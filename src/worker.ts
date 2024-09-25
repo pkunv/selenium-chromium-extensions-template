@@ -1,6 +1,6 @@
 import webdriver, { By } from "selenium-webdriver"
 import { workerData } from "worker_threads"
-import { createDriver, focusWindow, loadCookies, takeScreenshot } from "./driver"
+import { createDriver, focusWindow, takeScreenshot } from "./driver"
 
 async function main() {
 	const { name } = workerData
@@ -35,6 +35,7 @@ async function main() {
 
 	await takeScreenshot(driver, name)
 
+	/*
 	await driver.get("https://www.instagram.com")
 	console.log(`[${name}] LOGGING IN`)
 	await driver.sleep(500)
@@ -47,6 +48,7 @@ async function main() {
 	await driver.get("https://www.instagram.com/direct/inbox/")
 	await driver.sleep(5000)
 	await takeScreenshot(driver, name)
+	*/
 
 	//await driver.sleep(5000)
 
