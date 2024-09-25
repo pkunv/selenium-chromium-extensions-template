@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
+		"build:worker": "esbuild ./src/worker.ts --bundle --minify --platform=node --format=esm --main-fields=module,main --outfile=dist/worker.js --packages=external",
 		"start": "esbuild ./src/index.ts --bundle --minify --platform=node --format=esm --main-fields=module,main --outfile=dist/index.js --packages=external && node dist/index.js"
 	},
 	"author": "pkunv",

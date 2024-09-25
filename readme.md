@@ -1,4 +1,4 @@
-# Selenium Chrome/Chromium headless template
+# Selenium Chrome/Chromium headless mode template
 
 ## Overview
 
@@ -7,6 +7,7 @@
 - Focus function
 - Screenshot function
 - Cookie loader
+- Optional multiple workers by `node:workers_threads`
 
 ## Installation:
 

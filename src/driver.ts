@@ -33,13 +33,22 @@ export async function focusWindow(driver: webdriver.WebDriver) {
 	await driver.switchTo().window(handle)
 }
 
-export async function takeScreenshot(driver: webdriver.WebDriver) {
+export async function takeScreenshot(driver: webdriver.WebDriver, worker?: string) {
 	const screenshot = await driver.takeScreenshot()
-	fs.writeFileSync(`screenshots/screenshot-${new Date().getTime()}.png`, screenshot, "base64")
+	console.log(`${worker ? `[${worker}]` : ""} SCREENSHOT TAKEN`)
+
+	fs.writeFile(
+		`screenshots/screenshot-${new Date().getTime()}${worker ? "-" + worker : ""}.png`,
+		screenshot,
+		"base64",
+		() => {},
+	)
 }
 
 export async function loadCookies(driver: webdriver.WebDriver, file: string) {
-	const cookiesFile = JSON.parse(fs.readFileSync(fs.realpathSync(file), "utf-8"))
+	const cookiesFile = await fs.promises
+		.readFile(fs.realpathSync(file), "utf-8")
+		.then((data) => JSON.parse(data))
 
 	cookiesFile.forEach(async (cookie: webdriver.IWebDriverOptionsCookie) => {
 		await driver.manage().addCookie(cookie)
