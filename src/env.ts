@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-const requiredEnvVars = ["CHROME_BIN"]
+const requiredEnvVars = ["CHROME_BIN", "WORKER_COUNT"]
 const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar])
 
 if (missingEnvVars.length) {
@@ -12,4 +12,5 @@ if (missingEnvVars.length) {
 
 export const env = {
 	CHROME_BIN: process.env.CHROME_BIN!,
+	WORKER_COUNT: parseInt(process.env.WORKER_COUNT!, 10),
 }
