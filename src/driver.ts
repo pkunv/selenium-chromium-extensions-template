@@ -4,8 +4,9 @@ import { Options } from "selenium-webdriver/chrome.js"
 import { env } from "./env"
 
 export async function createDriver(
-	{ loadExtensions }: { loadExtensions?: boolean } = {
+	{ loadExtensions, headless }: { loadExtensions?: boolean; headless?: boolean } = {
 		loadExtensions: true,
+		headless: true,
 	},
 ) {
 	const extensions = fs
@@ -18,7 +19,9 @@ export async function createDriver(
 		options.addExtensions(...extensions)
 	}
 	options.addArguments("--disable-gpu")
-	options.addArguments("--headless=new")
+	if (headless) {
+		options.addArguments("--headless=new")
+	}
 
 	const driver = new webdriver.Builder().forBrowser("chrome").setChromeOptions(options).build()
 	return driver
