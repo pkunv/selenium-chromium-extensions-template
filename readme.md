@@ -1,10 +1,12 @@
 # Selenium Chrome/Chromium headless mode template
 
+Inside `src/worker.ts` you can find main automation file and you can freely edit your automation workflow.
+
 ## Overview
 
 - Extension loader (add .crx files to `/extensions`)
 - Working headless setup
-- Focus function
+- Focus window function
 - Screenshot function
 - Cookie loader
 - Optional multiple workers by `node:workers_threads`
